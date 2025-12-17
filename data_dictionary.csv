@@ -1,0 +1,13 @@
+Column_Name,Data_Type_in_BigQuery_T2,Source_Status,Description
+transaction\_id,STRING,Raw,Unique ID for each transaction (Primary Key).
+customer\_id,STRING,Raw,Unique ID for the customer.
+branch\_location,STRING,Raw,Raw text location for the branch.
+branch\_killeen,BOOLEAN,Derived/Cleaned,Boolean flag: TRUE if the transaction is tied to the Killeen/Fort Hood area (Standardized).
+transaction\_date,DATE,Derived/Cleaned,Date the transaction occurred. Parsed from raw timestamp.
+transaction\_time,TIME,Derived/Cleaned,Time the transaction occurred. Parsed from raw timestamp.
+transaction\_type,STRING,Derived/Cleaned,"Type of fee-inducing transaction (e.g., ACH\_DEBIT, POS\_PURCHASE). Standardized (UPPERCASE)."
+fee\_type,STRING,Derived/Cleaned,"Type of fee assessed (NSF, OVERDRAFT). Standardized (UPPERCASE)."
+fee\_amount\_usd,BIGNUMERIC,Derived/Cleaned,The cleaned numeric dollar amount of the fee. Extracted from raw string and cast to numeric (BIGNUMERIC).
+is\_reversed,BOOLEAN,Derived/Cleaned,Boolean flag: TRUE if the fee was later reversed/waived. Converted from raw integer flag.
+reversal\_reason,STRING,Raw,"The reason for reversal: (CUST\_DISPUTE\_24H\_CURE, FRAUD\_CLAIM, GOODWILL\_WAIVER, NONE)."
+policy\_version,STRING,Raw,"The fee policy in effect at the time (V1\_STRICT, V2\_24H\_CURE)."
